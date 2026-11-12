@@ -7,6 +7,7 @@
 #include "HSG_TechnicalTest/Public/Characters/HSGBaseCharacter.h"
 #include "HSGPlayerCharacter.generated.h"
 
+class UInteractionComponent;
 class UInputAction;
 class USpringArmComponent;
 class UCameraComponent;
@@ -77,10 +78,14 @@ protected:
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly)
 	TObjectPtr<UCameraComponent> C_Camera;
 	
+	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly)
+	TObjectPtr<UInteractionComponent> C_Interaction;
+	
 private:
 	void PerformMovement(const FInputActionValue& Value);
 	void PerformLook(const FInputActionValue& Value);
 	void PerformStartJump();
 	void PerformStopJumping();
+	void PerformInteract();
 	
 };

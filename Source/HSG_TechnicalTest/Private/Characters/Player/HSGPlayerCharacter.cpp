@@ -7,6 +7,7 @@
 #include "EnhancedInputSubsystems.h"
 #include "Camera/CameraComponent.h"
 #include "GameFramework/SpringArmComponent.h"
+#include "HSG_TechnicalTest/Public/Components/InteractionComponent.h"
 #include "Kismet/KismetMathLibrary.h"
 
 
@@ -19,6 +20,7 @@ AHSGPlayerCharacter::AHSGPlayerCharacter()
 	
 	C_SpringArm = CreateDefaultSubobject<USpringArmComponent>("SpringArm");
 	C_Camera = CreateDefaultSubobject<UCameraComponent>("Camera");
+	C_Interaction = CreateDefaultSubobject<UInteractionComponent>("Interactions");
 	
 	C_SpringArm->SetupAttachment(GetRootComponent());
 	C_SpringArm->SetRelativeLocation(FVector(0.0f, 0.0f, 60.f));
@@ -50,6 +52,7 @@ void AHSGPlayerCharacter::SetupPlayerInputComponent(UInputComponent* PlayerInput
 		EIC->BindAction(IA_Look, ETriggerEvent::Triggered, this, &AHSGPlayerCharacter::PerformLook);
 		EIC->BindAction(IA_Jump, ETriggerEvent::Started, this, &AHSGPlayerCharacter::PerformStartJump);
 		EIC->BindAction(IA_Jump, ETriggerEvent::Completed, this, &AHSGPlayerCharacter::PerformStopJumping);
+		EIC->BindAction(IA_Interact, ETriggerEvent::Started, this, &AHSGPlayerCharacter::PerformInteract);
 	}
 }
 
@@ -98,4 +101,9 @@ void AHSGPlayerCharacter::PerformStartJump()
 void AHSGPlayerCharacter::PerformStopJumping()
 {
 	Super::StopJumping();
+}
+
+void AHSGPlayerCharacter::PerformInteract()
+{
+	C_Interaction->TryInteract();
 }
