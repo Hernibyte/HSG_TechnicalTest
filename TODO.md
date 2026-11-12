@@ -8,12 +8,12 @@
 
 ## Actor Interaction
 
-- [ ] Create an interactable interface in C++.
-- [ ] Add "interact" input action to player.
+- [X] Create an interactable interface in C++.
+- [X] Add "interact" input action to player.
 
 ## Interactable Spawner
 
-- [ ] Create a Spawner actor with the interactable interface.
+- [X] Create a Spawner actor with the interactable interface.
 - [ ] Upon interaction, pop up a UI Widget on the screen.
 
 ## Spawner System
