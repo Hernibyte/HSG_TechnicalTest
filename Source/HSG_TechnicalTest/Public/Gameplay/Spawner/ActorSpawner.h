@@ -8,6 +8,7 @@
 #include "ActorSpawner.generated.h"
 
 class USpawnerComponent;
+class UUserWidget;
 
 UCLASS()
 class HSG_TECHNICALTEST_API AActorSpawner : public AActor, public IInteractable
@@ -21,10 +22,14 @@ public:
 	
 	virtual void Interact(AActor* Interactor) override;
 
+	
 protected:
 	virtual void BeginPlay() override;
 	
-	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly)
+	UPROPERTY(EditAnywhere, BlueprintReadOnly)
+	TSubclassOf<UUserWidget> WidgetClass;
+	
+	UPROPERTY(EditAnywhere, BlueprintReadOnly)
 	TObjectPtr<USpawnerComponent> C_Spawner;
 	
 };

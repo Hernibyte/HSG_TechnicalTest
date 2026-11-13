@@ -3,19 +3,20 @@
 
 #include "Gameplay/Spawner/ActorSpawner.h"
 
-#include "Gameplay/Systems/SpawnerComponent.h"
-
+#include "Components/SpawnerComponent.h"
+#include "Interfaces/WidgetRequester.h"
 
 AActorSpawner::AActorSpawner()
 {
 	PrimaryActorTick.bCanEverTick = true;
+	
+	C_Spawner = CreateDefaultSubobject<USpawnerComponent>("Spawner Component");
+	
 }
 
 void AActorSpawner::BeginPlay()
 {
 	Super::BeginPlay();
-	
-	C_Spawner = CreateDefaultSubobject<USpawnerComponent>("C_Spawner");
 }
 
 void AActorSpawner::Tick(float DeltaTime)
@@ -25,5 +26,12 @@ void AActorSpawner::Tick(float DeltaTime)
 
 void AActorSpawner::Interact(AActor* Interactor)
 {
-	// TODO: Pop up the Widget here
+	if (const APawn* Pawn = Cast<APawn>(Interactor))
+	{
+		APlayerController* PC = Cast<APlayerController>(Pawn->GetController());
+		if (PC && PC->GetClass()->ImplementsInterface(UWidgetRequester::StaticClass()))
+		{
+			IWidgetRequester::Execute_RequestOpenWidget(PC, WidgetClass, this);
+		}
+	}
 }
