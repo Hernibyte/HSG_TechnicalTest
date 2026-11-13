@@ -4,7 +4,7 @@
 
 - [X] Walking.
 - [ ] Running.
-- [ ] Add appropriate animations.
+- [X] Add appropriate animations.
 
 ## Actor Interaction
 
