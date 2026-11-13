@@ -7,8 +7,8 @@
 #include "Interfaces/Interactable.h"
 #include "ActorSpawner.generated.h"
 
+class UHSG_UserWidget;
 class USpawnerComponent;
-class UUserWidget;
 
 UCLASS()
 class HSG_TECHNICALTEST_API AActorSpawner : public AActor, public IInteractable
@@ -21,13 +21,15 @@ public:
 	virtual void Tick(float DeltaTime) override;
 	
 	virtual void Interact(AActor* Interactor) override;
-
+	
+	UFUNCTION(BlueprintCallable)
+	void TrySpawnActors(int InAmount, float InLifeSpan);
 	
 protected:
 	virtual void BeginPlay() override;
 	
 	UPROPERTY(EditAnywhere, BlueprintReadOnly)
-	TSubclassOf<UUserWidget> WidgetClass;
+	TSubclassOf<UHSG_UserWidget> WidgetClass;
 	
 	UPROPERTY(EditAnywhere, BlueprintReadOnly)
 	TObjectPtr<USpawnerComponent> C_Spawner;

@@ -35,3 +35,11 @@ void AActorSpawner::Interact(AActor* Interactor)
 		}
 	}
 }
+
+void AActorSpawner::TrySpawnActors(int InAmount, float InLifeSpan)
+{
+	C_Spawner->Amount_ActorsToSpawn = InAmount;
+	C_Spawner->LifeSpan = InLifeSpan;
+	
+	C_Spawner->TrySpawnActors();
+}
