@@ -17,7 +17,7 @@ public:
 
 	virtual void BeginPlay() override;
 
-	void TryInteract();
+	void TryInteract(const FVector& StartTraceLocation, const FVector& EndTraceLocation);
 	
 protected:
 	UPROPERTY(EditAnywhere)

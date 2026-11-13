@@ -105,5 +105,8 @@ void AHSGPlayerCharacter::PerformStopJumping()
 
 void AHSGPlayerCharacter::PerformInteract()
 {
-	C_Interaction->TryInteract();
+	const FVector Start = GetActorLocation();
+	const FVector End = GetActorLocation();
+	
+	C_Interaction->TryInteract(Start, End);
 }

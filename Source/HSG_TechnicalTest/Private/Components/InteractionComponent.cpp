@@ -18,11 +18,8 @@ void UInteractionComponent::BeginPlay()
 	Super::BeginPlay();
 }
 
-void UInteractionComponent::TryInteract()
+void UInteractionComponent::TryInteract(const FVector& StartTraceLocation, const FVector& EndTraceLocation)
 {
-	const FVector Start = GetOwner()->GetActorLocation();
-	const FVector End = GetOwner()->GetActorLocation();
-	
 	TArray<AActor*> ActorsToIgnore;
 	ActorsToIgnore.Add(GetOwner());
 	
@@ -30,8 +27,8 @@ void UInteractionComponent::TryInteract()
 	
 	const bool bHit = UKismetSystemLibrary::SphereTraceMulti(
 		GetWorld(), 
-		Start, 
-		End, 
+		StartTraceLocation, 
+		EndTraceLocation, 
 		CheckSphereRadius, 
 		UEngineTypes::ConvertToTraceType(ECC_Camera), 
 		false, 
