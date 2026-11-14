@@ -3,7 +3,7 @@
 ## Character Locomotion
 
 - [X] Walking.
-- [ ] Running.
+- [X] Running.
 - [X] Add appropriate animations.
 
 ## Actor Interaction
