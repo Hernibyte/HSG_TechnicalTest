@@ -9,6 +9,7 @@
 
 class UHSG_UserWidget;
 class USpawnerComponent;
+class UBoxComponent;
 
 UCLASS()
 class HSG_TECHNICALTEST_API AActorSpawner : public AActor, public IInteractable
@@ -33,5 +34,9 @@ protected:
 	
 	UPROPERTY(EditAnywhere, BlueprintReadOnly)
 	TObjectPtr<USpawnerComponent> C_Spawner;
+	
+	UPROPERTY(EditAnywhere, BlueprintReadOnly)
+	TObjectPtr<UBoxComponent> C_Box;
+	
 	
 };

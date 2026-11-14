@@ -24,13 +24,13 @@ public:
 	UFUNCTION(BlueprintCallable)
 	void TrySpawnActors();
 	
-	UPROPERTY(EditAnywhere, BlueprintReadWrite)
-	FVector SpawnAreaOffsetLocation;
+	UPROPERTY()
+	FVector SpawnAreaLocation;
 	
-	UPROPERTY(EditAnywhere, BlueprintReadWrite)
-	FRotator SpawnAreaOffsetRotation;
+	UPROPERTY()
+	FRotator SpawnAreaRotation;
 	
-	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	UPROPERTY()
 	FVector SpawnAreaScale;
 	
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)

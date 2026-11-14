@@ -20,20 +20,6 @@ void USpawnerComponent::TickComponent(float DeltaTime, enum ELevelTick TickType,
 {
 	Super::TickComponent(DeltaTime, TickType, ThisTickFunction);
 	
-	if (bShowSpawnArea)
-	{
-		DrawDebugBox(
-			GetWorld(),
-			GetOwner()->GetActorLocation() + SpawnAreaOffsetLocation,
-			SpawnAreaScale,       // Extent
-			(GetOwner()->GetActorRotation() + SpawnAreaOffsetRotation).Quaternion(), // Rotación
-			FColor::Red,
-			false,                           // Persistent
-			-1.0f,                            // Duration
-			0,
-			1.5f                             // Grosor
-		);
-	}
 }
 
 void USpawnerComponent::TrySpawnActors()
@@ -49,7 +35,6 @@ void USpawnerComponent::TrySpawnActors()
 
 FVector USpawnerComponent::GetRandomPointInOrientedBox()
 {
-	// 1. Convertimos Scale a Extent (mitad del tamaño)
 	const FVector Extent = SpawnAreaScale;
 
 	// 2. Generamos un punto aleatorio en espacio local (AABB centrada en origen)
@@ -60,5 +45,5 @@ FVector USpawnerComponent::GetRandomPointInOrientedBox()
 	);
 
 	// 3. Aplicamos la rotación y luego la traslación
-	return (GetOwner()->GetActorLocation() + SpawnAreaOffsetLocation) + (GetOwner()->GetActorRotation() + SpawnAreaOffsetRotation).RotateVector(RandomLocal);
+	return SpawnAreaLocation + GetOwner()->GetActorRotation().RotateVector(RandomLocal);
 }

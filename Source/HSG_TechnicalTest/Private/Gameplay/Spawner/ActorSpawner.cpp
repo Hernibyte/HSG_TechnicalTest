@@ -3,6 +3,7 @@
 
 #include "Gameplay/Spawner/ActorSpawner.h"
 
+#include "Components/BoxComponent.h"
 #include "Components/SpawnerComponent.h"
 #include "Interfaces/WidgetRequester.h"
 
@@ -12,6 +13,7 @@ AActorSpawner::AActorSpawner()
 	
 	C_Spawner = CreateDefaultSubobject<USpawnerComponent>("Spawner Component");
 	
+	C_Box = CreateDefaultSubobject<UBoxComponent>("Box Component");
 }
 
 void AActorSpawner::BeginPlay()
@@ -42,6 +44,10 @@ void AActorSpawner::TrySpawnActors(int InAmount, float InLifeSpan)
 {
 	C_Spawner->Amount_ActorsToSpawn = InAmount;
 	C_Spawner->LifeSpan = InLifeSpan;
+	
+	C_Spawner->SpawnAreaLocation = C_Box->GetComponentLocation();
+	C_Spawner->SpawnAreaRotation = GetActorRotation();
+	C_Spawner->SpawnAreaScale = C_Box->GetUnscaledBoxExtent();
 	
 	C_Spawner->TrySpawnActors();
 }
