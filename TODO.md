@@ -15,7 +15,7 @@
 
 - [X] Create a Spawner actor with the interactable interface.
 - [X] Upon interaction, pop up a UI Widget on the screen.
-- [ ] Add BoundingBox component or a custom ComponentVisualizer for better editor debugging.
+- [X] Add BoundingBox component or a custom ComponentVisualizer for better editor debugging.
 
 ## Spawner System
 
@@ -29,4 +29,4 @@
 - [X] Include an input field to enter the amount of actors to spawn.
 - [X] Include an input flied to enter the lifespan/duration for the spawned actors.
 - [X] Include a confirmation button to execute the action.
-- [ ] Move to a C++ class.
+- [X] Move to a C++ class.
