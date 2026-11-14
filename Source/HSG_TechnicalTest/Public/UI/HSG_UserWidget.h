@@ -18,6 +18,8 @@ public:
 	UFUNCTION(BlueprintCallable)
 	void SetSourceActor(AActor* InSourceActor);
 	
+	void CloseWidget(const FInputModeDataBase& InputMode = FInputModeGameOnly(), bool ShowMouseCursor = false);
+	
 protected:
 	UPROPERTY(BlueprintReadOnly)
 	TObjectPtr<AActor> SourceActor;
