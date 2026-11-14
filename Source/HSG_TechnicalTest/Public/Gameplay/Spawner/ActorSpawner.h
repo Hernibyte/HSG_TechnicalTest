@@ -20,7 +20,7 @@ public:
 
 	virtual void Tick(float DeltaTime) override;
 	
-	virtual void Interact(AActor* Interactor) override;
+	virtual void Interact_Implementation(AActor* Interactor) override;
 	
 	UFUNCTION(BlueprintCallable)
 	void TrySpawnActors(int InAmount, float InLifeSpan);

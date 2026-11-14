@@ -44,7 +44,7 @@ void UInteractionComponent::TryInteract(const FVector& StartTraceLocation, const
 		{
 			if (HitResult.GetActor() && HitResult.GetActor()->Implements<UInteractable>())
 			{
-				Cast<IInteractable>(HitResult.GetActor())->Interact(GetOwner());
+				IInteractable::Execute_Interact(HitResult.GetActor(), GetOwner());
 			}
 		}
 	}

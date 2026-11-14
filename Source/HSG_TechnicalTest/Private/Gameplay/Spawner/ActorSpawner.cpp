@@ -24,8 +24,10 @@ void AActorSpawner::Tick(float DeltaTime)
 	Super::Tick(DeltaTime);
 }
 
-void AActorSpawner::Interact(AActor* Interactor)
+void AActorSpawner::Interact_Implementation(AActor* Interactor)
 {
+	IInteractable::Interact_Implementation(Interactor);
+	
 	if (const APawn* Pawn = Cast<APawn>(Interactor))
 	{
 		APlayerController* PC = Cast<APlayerController>(Pawn->GetController());

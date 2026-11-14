@@ -20,8 +20,8 @@ class HSG_TECHNICALTEST_API ISpawnable
 	GENERATED_BODY()
 
 public:
-	
-	bool CanBeSpawned() const;
+	UFUNCTION(BlueprintNativeEvent, BlueprintCallable)
+	bool CanBeSpawned();
 	
 	
 };

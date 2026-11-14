@@ -21,6 +21,7 @@ class HSG_TECHNICALTEST_API IInteractable
 	GENERATED_BODY()
 
 public:
-	virtual void Interact(AActor* Interactor) = 0;
+	UFUNCTION(BlueprintNativeEvent, BlueprintCallable)
+	void Interact(AActor* Interactor);
 	
 };
