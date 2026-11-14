@@ -55,6 +55,12 @@ protected:
 	TObjectPtr<UInputAction> IA_Interact;
 	
 	/**
+	 * Input Action for Run.
+	 */
+	UPROPERTY(EditDefaultsOnly, BlueprintReadWrite, Category = "Input")
+	TObjectPtr<UInputAction> IA_Run;
+	
+	/**
 	 * Default Input Mapping Context.
 	 */
 	UPROPERTY(EditAnywhere, Category="Input")
@@ -78,8 +84,14 @@ protected:
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly)
 	TObjectPtr<UCameraComponent> C_Camera;
 	
+	/**
+	 * Interaction Component.
+	 */
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly)
 	TObjectPtr<UInteractionComponent> C_Interaction;
+	
+	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Movement")
+	float MaxRunSpeed = 0;
 	
 private:
 	void PerformMovement(const FInputActionValue& Value);
@@ -87,5 +99,8 @@ private:
 	void PerformStartJump();
 	void PerformStopJumping();
 	void PerformInteract();
+	void PerformStartRun();
+	void PerformStopRunning();
 	
+	float Cache_MaxWalkSpeed = 0;
 };

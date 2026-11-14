@@ -6,6 +6,7 @@
 #include "EnhancedInputComponent.h"
 #include "EnhancedInputSubsystems.h"
 #include "Camera/CameraComponent.h"
+#include "GameFramework/CharacterMovementComponent.h"
 #include "GameFramework/SpringArmComponent.h"
 #include "HSG_TechnicalTest/Public/Components/InteractionComponent.h"
 #include "Kismet/KismetMathLibrary.h"
@@ -53,6 +54,8 @@ void AHSGPlayerCharacter::SetupPlayerInputComponent(UInputComponent* PlayerInput
 		EIC->BindAction(IA_Jump, ETriggerEvent::Started, this, &AHSGPlayerCharacter::PerformStartJump);
 		EIC->BindAction(IA_Jump, ETriggerEvent::Completed, this, &AHSGPlayerCharacter::PerformStopJumping);
 		EIC->BindAction(IA_Interact, ETriggerEvent::Started, this, &AHSGPlayerCharacter::PerformInteract);
+		EIC->BindAction(IA_Run, ETriggerEvent::Started, this, &AHSGPlayerCharacter::PerformStartRun);
+		EIC->BindAction(IA_Run, ETriggerEvent::Completed, this, &AHSGPlayerCharacter::PerformStopRunning);
 	}
 }
 
@@ -109,4 +112,15 @@ void AHSGPlayerCharacter::PerformInteract()
 	const FVector End = GetActorLocation();
 	
 	C_Interaction->TryInteract(Start, End);
+}
+
+void AHSGPlayerCharacter::PerformStartRun()
+{
+	Cache_MaxWalkSpeed = GetCharacterMovement()->MaxWalkSpeed;
+	GetCharacterMovement()->MaxWalkSpeed = MaxRunSpeed;
+}
+
+void AHSGPlayerCharacter::PerformStopRunning()
+{
+	GetCharacterMovement()->MaxWalkSpeed = Cache_MaxWalkSpeed;
 }
