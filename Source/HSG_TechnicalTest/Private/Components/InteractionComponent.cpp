@@ -25,6 +25,7 @@ void UInteractionComponent::TryInteract(const FVector& StartTraceLocation, const
 	
 	TArray<FHitResult> HitResults;
 	
+	// Genera la colision para detectar los posibles objetos con los que interacturar
 	const bool bHit = UKismetSystemLibrary::SphereTraceMulti(
 		GetWorld(), 
 		StartTraceLocation, 
@@ -33,7 +34,7 @@ void UInteractionComponent::TryInteract(const FVector& StartTraceLocation, const
 		UEngineTypes::ConvertToTraceType(ECC_Camera), 
 		false, 
 		ActorsToIgnore, 
-		bDrawDebugTrace? EDrawDebugTrace::ForDuration : EDrawDebugTrace::None,
+		bDrawDebugTrace ? EDrawDebugTrace::ForDuration : EDrawDebugTrace::None,
 		HitResults,
 		true
 	);
@@ -42,8 +43,10 @@ void UInteractionComponent::TryInteract(const FVector& StartTraceLocation, const
 	{
 		for (const FHitResult& HitResult : HitResults)
 		{
+			// Determina si es posible interactuar con el objeto si implementa la interfaz correspondiente
 			if (HitResult.GetActor() && HitResult.GetActor()->Implements<UInteractable>())
 			{
+				// Ejecuta el metodo Interact de la interfaz IInteractable
 				IInteractable::Execute_Interact(HitResult.GetActor(), GetOwner());
 			}
 		}

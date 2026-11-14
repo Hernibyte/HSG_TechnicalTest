@@ -23,5 +23,4 @@ public:
 	UFUNCTION(BlueprintNativeEvent, BlueprintCallable)
 	bool CanBeSpawned();
 	
-	
 };

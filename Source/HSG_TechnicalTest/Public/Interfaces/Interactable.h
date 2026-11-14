@@ -21,6 +21,10 @@ class HSG_TECHNICALTEST_API IInteractable
 	GENERATED_BODY()
 
 public:
+	/**
+	 * Execute the interaction.
+	 * @param Interactor Actor requesting that interaction. 
+	 */
 	UFUNCTION(BlueprintNativeEvent, BlueprintCallable)
 	void Interact(AActor* Interactor);
 	

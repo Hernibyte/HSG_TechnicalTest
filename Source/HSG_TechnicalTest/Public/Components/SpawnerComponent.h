@@ -20,7 +20,10 @@ public:
 	virtual void BeginPlay() override;
 	
 	virtual void TickComponent(float DeltaTime, enum ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction) override;
-	
+
+	/**
+	 * Execute the Spawn Actors implementation.
+	 */
 	UFUNCTION(BlueprintCallable)
 	void TrySpawnActors();
 
@@ -56,6 +59,10 @@ public:
 	TSubclassOf<AActor> ActorToSpawn;
 	
 protected:
+	/**
+	 * 
+	 * @return A Random Point on Spawn bounds.
+	 */
 	FVector GetRandomPointInOrientedBox();
 	
 	UPROPERTY()

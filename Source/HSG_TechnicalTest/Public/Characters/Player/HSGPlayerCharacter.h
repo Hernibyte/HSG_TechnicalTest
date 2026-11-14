@@ -26,7 +26,10 @@ public:
 	virtual void Tick(float DeltaTime) override;
 
 	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
-	
+
+	/**
+	 * This method is called when PlayerController possess a Pawn and is executed when Pawn is already.
+	 */
 	virtual void PawnClientRestart() override;
 	
 protected:
@@ -89,7 +92,10 @@ protected:
 	 */
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly)
 	TObjectPtr<UInteractionComponent> C_Interaction;
-	
+
+	/**
+	 *  
+	 */
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Movement")
 	float MaxRunSpeed = 0;
 	
@@ -101,6 +107,9 @@ private:
 	void PerformInteract();
 	void PerformStartRun();
 	void PerformStopRunning();
-	
+
+	/**
+	 * Cache the max walk speed.
+	 */
 	float Cache_MaxWalkSpeed = 0;
 };

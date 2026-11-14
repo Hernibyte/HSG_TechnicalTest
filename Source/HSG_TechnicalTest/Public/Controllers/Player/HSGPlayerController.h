@@ -18,6 +18,11 @@ class HSG_TECHNICALTEST_API AHSGPlayerController : public AHSGBaseController, pu
 	GENERATED_BODY()
 	
 public:
+	/**
+	 * Receive a widget class to implement on player.
+	 * @param WidgetClass Widget to be created.
+	 * @param SourceActor Actor requesting that widget.
+	 */
 	virtual void RequestOpenWidget_Implementation(TSubclassOf<UHSG_UserWidget> WidgetClass, AActor* SourceActor) override;
 	
 };

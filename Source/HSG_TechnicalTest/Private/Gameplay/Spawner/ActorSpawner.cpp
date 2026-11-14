@@ -30,6 +30,7 @@ void AActorSpawner::Interact_Implementation(AActor* Interactor)
 {
 	IInteractable::Interact_Implementation(Interactor);
 	
+	// Search for WidgetRequester interface
 	if (const APawn* Pawn = Cast<APawn>(Interactor))
 	{
 		APlayerController* PC = Cast<APlayerController>(Pawn->GetController());
@@ -45,9 +46,9 @@ void AActorSpawner::TrySpawnActors(int InAmount, float InLifeSpan)
 	C_Spawner->Amount_ActorsToSpawn = InAmount;
 	C_Spawner->LifeSpan = InLifeSpan;
 	
-	C_Spawner->SpawnAreaLocation = C_Box->GetComponentLocation();
-	C_Spawner->SpawnAreaRotation = GetActorRotation();
-	C_Spawner->SpawnAreaScale = C_Box->GetUnscaledBoxExtent();
+	C_Spawner->SetSpawnAreaLocation(C_Box->GetComponentLocation());
+	C_Spawner->SetSpawnAreaRotation(GetActorRotation());
+	C_Spawner->SetSpawnAreaScale(C_Box->GetUnscaledBoxExtent());
 	
 	C_Spawner->TrySpawnActors();
 }

@@ -29,6 +29,7 @@ AHSGPlayerCharacter::AHSGPlayerCharacter()
 	
 	C_Camera->SetupAttachment(C_SpringArm);
 	
+	// Si es true, la rotacion del player se realiza en direccion de la camara del jugador.
 	bUseControllerRotationYaw = false;
 }
 
@@ -63,8 +64,11 @@ void AHSGPlayerCharacter::PawnClientRestart()
 {
 	Super::PawnClientRestart();
 	
+	// Obtener el PlayerController
 	if (APlayerController* PC = Cast<APlayerController>(GetController()))
 	{
+		// Obtener el EnhancedInputSubsystem a travez del LocalPlayer
+		//  donde se suelen almacenar los subsystems
 		if (UEnhancedInputLocalPlayerSubsystem* Subsystem = ULocalPlayer::GetSubsystem<UEnhancedInputLocalPlayerSubsystem>(PC->GetLocalPlayer()))
 		{
 			if (!IMC_Default.IsNull())
@@ -78,9 +82,12 @@ void AHSGPlayerCharacter::PawnClientRestart()
 void AHSGPlayerCharacter::PerformMovement(const FInputActionValue& Value)
 {
 	const FVector2D MovementValue = Value.Get<FVector2D>();
+	// Con esto elimino la posible influencia del Pitch en el cálculo de direccion.
 	const FRotator FwdRotationValue = FRotator(0.f, GetControlRotation().Yaw, 0.f);
 	const FRotator RgtRotationValue = FRotator(0.f, GetControlRotation().Yaw, GetControlRotation().Roll);
 	
+	// Obtengo el ForwardDirection y RightDirection actual del player
+	// Aplico el movimiento al player
 	const FVector ForwardDirection = UKismetMathLibrary::GetForwardVector(FwdRotationValue);
 	AddMovementInput(ForwardDirection, MovementValue.X);
 	
