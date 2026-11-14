@@ -22,7 +22,7 @@
 - [X] Spawns the number of actors specified by the user at random locations within a defined area.
 - [X] Retains the spawned actors in the level only for the user-specified time, automatically destroying them afterward.
 - [X] Add a simple actor for spawning.
-- [ ] Add collision checks on spawning actors.
+- [X] Add collision checks on spawning actors.
 
 ## UI Widget
 
