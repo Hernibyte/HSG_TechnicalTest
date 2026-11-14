@@ -23,6 +23,40 @@ public:
 	
 	UFUNCTION(BlueprintCallable)
 	void TrySpawnActors();
+
+	UFUNCTION(BlueprintCallable)
+	void SetSpawnAreaLocation(FVector InSpawnAreaLocation) { SpawnAreaLocation = InSpawnAreaLocation; }
+	
+	UFUNCTION(BlueprintCallable)
+	void SetSpawnAreaRotation(FRotator InSpawnAreaRotation) { SpawnAreaRotation = InSpawnAreaRotation; }
+	
+	UFUNCTION(BlueprintCallable)
+	void SetSpawnAreaScale(FVector InSpawnAreaScale) { SpawnAreaScale = InSpawnAreaScale; }
+	
+	/**
+	 * Amount of actors to spawn.
+	 */
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	int Amount_ActorsToSpawn = 0;
+
+	/**
+	 * Life span of spawned actors
+	 */
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	float LifeSpan = 0.0f;
+
+	/**
+	 * If true, adjust if posible but always spawn.
+	 * If false, adjust if posible but don't spawn if colliding.
+	 */
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	bool bForceSpawnOnCollision = true;
+	
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Spawner", meta = (MustImplement = "/Scripts/HSG_TechnicalTest.Spawnable"))
+	TSubclassOf<AActor> ActorToSpawn;
+	
+protected:
+	FVector GetRandomPointInOrientedBox();
 	
 	UPROPERTY()
 	FVector SpawnAreaLocation;
@@ -32,20 +66,5 @@ public:
 	
 	UPROPERTY()
 	FVector SpawnAreaScale;
-	
-	UPROPERTY(EditAnywhere, BlueprintReadWrite)
-	bool bShowSpawnArea = true;
-	
-	UPROPERTY(EditAnywhere, BlueprintReadWrite)
-	int Amount_ActorsToSpawn = 0;
-	
-	UPROPERTY(EditAnywhere, BlueprintReadWrite)
-	float LifeSpan = 0.0f;
-	
-	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Spawner", meta = (MustImplement = "/Scripts/HSG_TechnicalTest.Spawnable"))
-	TSubclassOf<AActor> ActorToSpawn;
-	
-protected:
-	FVector GetRandomPointInOrientedBox();
 	
 };

@@ -27,9 +27,18 @@ void USpawnerComponent::TrySpawnActors()
 	for (int i = 0; i < Amount_ActorsToSpawn; i++)
 	{
 		FVector SpawnLocation = GetRandomPointInOrientedBox();
+		
+		// Ajustar los parametros de spawn principalmente para que se pueda tener la opcion de ajustar si puede 
+		// y si no puede que lo genere de todas formas o que no lo genere dependiendo de bForceSpawnOnCollision
 		FActorSpawnParameters SpawnParameters;
-		AActor* NewActor = GetWorld()->SpawnActor<AActor>(ActorToSpawn, SpawnLocation, FRotator::ZeroRotator, SpawnParameters);
-		NewActor->SetLifeSpan(LifeSpan);
+		SpawnParameters.Owner = GetOwner();
+		SpawnParameters.Instigator = GetOwner()->GetInstigator();
+		SpawnParameters.SpawnCollisionHandlingOverride = bForceSpawnOnCollision ? ESpawnActorCollisionHandlingMethod::AdjustIfPossibleButAlwaysSpawn : ESpawnActorCollisionHandlingMethod::AdjustIfPossibleButDontSpawnIfColliding;
+
+		if (AActor* NewActor = GetWorld()->SpawnActor<AActor>(ActorToSpawn, SpawnLocation, FRotator::ZeroRotator, SpawnParameters))
+		{
+			NewActor->SetLifeSpan(LifeSpan);
+		}
 	}
 }
 
